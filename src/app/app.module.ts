@@ -7,13 +7,15 @@ import { HomeComponent } from './home/home.component';
 import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './post/post.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DetailPostComponent } from './detail-post/detail-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PostsComponent,
-    PostComponent
+    PostComponent,
+    DetailPostComponent
   ],
   imports: [
     BrowserModule,

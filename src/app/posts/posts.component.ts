@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ApiService } from '../api.service';
+import { debounceTime, tap } from 'rxjs/operators';
+import { IPost } from '../interfaces/post.interface';
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsComponent implements OnInit {
 
-  constructor() { }
+  listDesPosts: IPost[] = [];
+
+  constructor(private apiService: ApiService) {
+
+  }
 
   ngOnInit(): void {
+    this.apiService.getAllPosts().subscribe(
+      (data) => {
+        // console.log(data);
+
+        this.listDesPosts.push(...data);
+      }
+    );
   }
 
 }

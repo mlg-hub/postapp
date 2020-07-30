@@ -1,2 +1,4 @@
-<h5>Movies list</h5>
-<app-post> </app-post>
+<h5>Post list</h5>
+<div *ngFor="let post of listDesPosts" style="margin-bottom: 3rem;">
+  <app-post [post]="post"></app-post>
+</div>
