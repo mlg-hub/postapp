@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ApiService } from '../api.service';
+import { IPost } from '../interfaces/post.interface';
 
 @Component({
   selector: 'app-detail-post',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailPostComponent implements OnInit {
 
-  constructor() { }
+  postFromUrl: IPost;
+  constructor(private router: Router, private activated: ActivatedRoute, private apiSerivie: ApiService) {
+
+  }
 
   ngOnInit(): void {
+    this.activated.params.subscribe((v) => this.getDetail(v.id));
+
+  }
+
+  getDetail(postId: string): void {
+    this.apiSerivie.getPost(postId)
+      .subscribe((value) => {
+        console.log("from url post", value);
+        this.postFromUrl = value;
+      });
+
   }
 
 }
